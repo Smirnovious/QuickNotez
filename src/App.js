@@ -19,9 +19,20 @@ const App = () => {
     date: "2020-02-16"
   },
 ])
+
+const addNote = (text) => {
+  setNotes([...notes, {
+    id: nanoid(),
+    text: text,
+    date: new Date().toISOString()
+  }])
+}
+
   return (
     <div className='container'>
-      <NotesList notes={notes}/>
+      <NotesList 
+      notes={notes}
+      handleAddNote={addNote}/>
     </div>
   )
 }
