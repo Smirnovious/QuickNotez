@@ -1,8 +1,11 @@
 import React from 'react'
+import NotesList from './components/NotesList'
 
 const App = () => {
   return (
-    <div>Hello</div>
+    <div className='container'>
+      <NotesList/>
+    </div>
   )
 }
 
