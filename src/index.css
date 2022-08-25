@@ -57,6 +57,12 @@ textarea:focus {
   align-items: center;
 }
 
+.header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .container {
   max-width: 960px;
   margin-right: auto;

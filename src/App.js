@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import NotesList from './components/NotesList'
 import { nanoid } from 'nanoid'
 import SearchBar from './components/SearchBar'
+import Header from './components/Header'
 const App = () => {
   const [notes, setNotes] = useState([
     {
@@ -39,6 +40,7 @@ const deleteNote = (id) => {
   return (
     <>
     <div className='container'>
+      <Header />
       <SearchBar handleSearchNote = {setSearchText}/>
       <NotesList 
       notes={notes.filter(note => note.text.toLowerCase().includes(searchText.toLowerCase()))}
