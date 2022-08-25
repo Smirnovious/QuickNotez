@@ -77,7 +77,18 @@ textarea:focus {
 /* SearchBar */
 .search-bar {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
+  background-color:  #e0e0d1;
+  border-radius: 10px;
+  padding: 5px;
+  margin-bottom: 1.5em;
+}
+
+.search-bar input {
+  border: none;
+  background-color:  #e0e0d1;
+}
+
+.search-bar input:focus {
+  outline: none;
 }
