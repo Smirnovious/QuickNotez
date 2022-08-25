@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import NotesList from './components/NotesList'
 import { nanoid } from 'nanoid'
+import SearchBar from './components/SearchBar'
 const App = () => {
   const [notes, setNotes] = useState([
     {
@@ -24,16 +25,25 @@ const addNote = (text) => {
   setNotes([...notes, {
     id: nanoid(),
     text: text,
-    date: new Date().toISOString()
+    date: new Date().toLocaleDateString(),
   }])
 }
 
+const deleteNote = (id) => {
+  setNotes(notes.filter(note => note.id !== id))
+}
+
+
   return (
+    <>
+    <SearchBar />
     <div className='container'>
       <NotesList 
       notes={notes}
-      handleAddNote={addNote}/>
+      handleAddNote={addNote}
+      deleteNote={deleteNote}/>
     </div>
+  </>
   )
 }
 
