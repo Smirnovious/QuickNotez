@@ -97,10 +97,12 @@ textarea:focus {
   border-radius: 10px;
   padding: 5px;
   margin-bottom: 1.5em;
+  
 }
 
 .search-bar input {
   border: none;
+  width: 100%;
   background-color:  #e0e0d1;
 }
 
