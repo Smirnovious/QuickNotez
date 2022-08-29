@@ -1,4 +1,4 @@
-import React, { useState} from 'react'
+import React, { useState, useEffect} from 'react'
 import NotesList from './components/NotesList'
 import { nanoid } from 'nanoid'
 import SearchBar from './components/SearchBar'
@@ -6,13 +6,25 @@ import Header from './components/Header'
 const App = () => {
   const [searchText, setSearchText] = useState('')
   const [darkMode, setDarkMode] = useState(false)
-  const [notes, setNotes] = useState([
+  const [userNotes, setNotes] = useState([
     {
     id: nanoid(),
     text: 'This is an Example note',
     date: "2020-11-21"
   },
 ]);
+
+ useEffect(() => {
+  const notes = localStorage.getItem('notes')
+  if (notes) {
+    setNotes(JSON.parse(notes))
+  }
+}, [])
+  useEffect(() => {
+    localStorage.setItem('notes', JSON.stringify(userNotes))
+  }, [userNotes])
+
+
 
 // Helper Functions
 // const getItem = (name) => JSON.parse(localStorage.getItem(name) ?? "null");
@@ -28,7 +40,7 @@ const App = () => {
 
 
 const addNote = (text) => {
-  setNotes([...notes, {
+  setNotes([...userNotes, {
     id: nanoid(),
     text: text,
     date: new Date().toLocaleDateString(),
@@ -36,7 +48,7 @@ const addNote = (text) => {
 }
 
 const deleteNote = (id) => {
-  setNotes(notes.filter(note => note.id !== id))
+  setNotes(userNotes.filter(note => note.id !== id))
 }
 
 
@@ -46,7 +58,7 @@ const deleteNote = (id) => {
         <Header handleToggle={setDarkMode}/>
         <SearchBar handleSearchNote = {setSearchText}/>
         <NotesList 
-        notes={notes.filter(note => note.text.toLowerCase().includes(searchText.toLowerCase()))}
+        notes={userNotes.filter(note => note.text.toLowerCase().includes(searchText.toLowerCase()))}
         handleAddNote={addNote}
         deleteNote={deleteNote}/>
       </div>
