@@ -1,29 +1,30 @@
-import React, { useState , useCallback} from 'react'
+import React, { useState} from 'react'
 import NotesList from './components/NotesList'
 import { nanoid } from 'nanoid'
 import SearchBar from './components/SearchBar'
 import Header from './components/Header'
 const App = () => {
-//   const [notes, setNotes] = useState([
-//     {
-//     id: nanoid(),
-//     text: 'This is an Example note',
-//     date: "2020-11-21"
-//   },
- 
-// ])
-const getItem = (name) => JSON.parse(localStorage.getItem(name) ?? "null");
-const setItem = (name, item) => localStorage.setItem(name, JSON.stringify(item));
-
-const [notes, setInternalNotes] = useState(getItem("react-notes-app-data"));
-
-
-const setNotes = useCallback((newNotes)=>{
-  setItem("react-notes-app-data",newNotes);
-  setInternalNotes(newNotes);
-}, [setInternalNotes]);
   const [searchText, setSearchText] = useState('')
   const [darkMode, setDarkMode] = useState(false)
+  const [notes, setNotes] = useState([
+    {
+    id: nanoid(),
+    text: 'This is an Example note',
+    date: "2020-11-21"
+  },
+]);
+
+// Helper Functions
+// const getItem = (name) => JSON.parse(localStorage.getItem(name) ?? "null");
+// const setItem = (name, item) => localStorage.setItem(name, JSON.stringify(item));
+
+// const [notes, setInternalNotes] = useState(getItem("react-notes-app-data"));
+
+
+// const setNotes = useCallback((newNotes)=>{
+//   setItem("react-notes-app-data", newNotes);
+//   setInternalNotes(newNotes);
+// }, [setInternalNotes]);
 
 
 const addNote = (text) => {
